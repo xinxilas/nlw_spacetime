@@ -22,6 +22,9 @@ dependencies:
   eslint-config-next:
     specifier: 13.4.2
     version: 13.4.2(eslint@8.40.0)(typescript@5.0.4)
+  jwt-decode:
+    specifier: ^3.1.2
+    version: 3.1.2
   lucide-react:
     specifier: ^0.218.0
     version: 0.218.0(react@18.2.0)
@@ -1985,6 +1988,10 @@ packages:
     dependencies:
       array-includes: 3.1.6
       object.assign: 4.1.4
+    dev: false
+
+  /jwt-decode@3.1.2:
+    resolution: {integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==}
     dev: false
 
   /language-subtag-registry@0.3.22:

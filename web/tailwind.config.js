@@ -11,7 +11,7 @@ module.exports = {
 				'5xl': '2.5rem',
 			},
 			fontFamily: {
-				sans: 'var(--font-robot)',
+				sans: 'var(--font-roboto)',
 				alt: 'var(--font-bai-jamjuree)',
 			},
 			blur: {
