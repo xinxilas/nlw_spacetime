@@ -1,16 +1,14 @@
-import { FastifyInstance } from "fastify";
+import { FastifyInstance, FastifyRequest } from "fastify";
 import { json } from "stream/consumers";
 import { z } from "zod";
 import { prisma } from "../lib/prisma";
 
 export async function authRoutes(app: FastifyInstance) {
-  app.post("/register", async (request) => {
+  app.post("/register", async (request: FastifyRequest<{ Body: string }>) => {
     const bodySchema = z.object({
       code: z.string()
     })
-    console.log(request.body)
     const { code } = bodySchema.parse(JSON.parse(request.body))
-    console.log(code)
 
     const accessTokenResponse = await fetch(
       "https://github.com/login/oauth/access_token?" + new URLSearchParams({

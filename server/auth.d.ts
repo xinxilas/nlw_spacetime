@@ -2,7 +2,10 @@ import "@fastify/jwt"
 
 declare module "@fastify/jwt" {
   export interface FastifyJWT {
-    payload: { id: number }
+    payload: { 
+      name: string
+      avatarUrl: string
+    }
     user: {
       sub: string
       name: string

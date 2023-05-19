@@ -1,7 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { prisma } from "../lib/prisma";
 import { z } from 'zod'
-import { request } from "http";
 
 export async function memoriesRoutes(app: FastifyInstance) {
   // curl -H "Content-Type: application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUmVuYXRvIExhIExhaW5hIiwiYXZhdGFyVXJsIjoiaHR0cHM6Ly9hdmF0YXJzLmdpdGh1YnVzZXJjb250ZW50LmNvbS91LzM4Njc0NzA1P3Y9NCIsInN1YiI6IjQ4NzZkMzQ3LWZjOTItNDYwYi1hN2M3LWYxMmNjYTc4N2JiNCIsImlhdCI6MTY4NDQyMjY2NCwiZXhwIjoxNjg1MjAwMjY0fQ.KFqANAEkzu8H2imdVEpxwujJAzkr_3OOXS6f8GTtlHA" --request GET --data "{\"code\":\"ed37e38b081d73d0641a\"}" http://localhost:3333/memories

@@ -4,6 +4,8 @@ export async function GET(request: NextRequest) {
 	const { searchParams } = new URL(request.url)
 	const code = searchParams.get('code')
 
+	const redirectTo = request.cookies.get('redirectTo')?.value
+
 	const registerResponse = await fetch(
 		process.env.BACKEND_BASE_URL + '/register',
 		{ method: 'POST', body: `{"code":"${code}"}` },
@@ -11,7 +13,7 @@ export async function GET(request: NextRequest) {
 
 	const { token } = await registerResponse.json()
 
-	const redirectURL = new URL('/', request.url)
+	const redirectURL = redirectTo ?? new URL('/', request.url)
 
 	const cookieExpiresInSeconds = 60 * 60 * 24 * 15 // 15 days
 
