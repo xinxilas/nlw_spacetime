@@ -4,6 +4,7 @@ import * as SecureStore from 'expo-secure-store'
 import React, { useEffect } from 'react'
 import { useRouter } from 'expo-router'
 import NLWSTLogo from '../src/assets/nlw-spacetime-logo.svg'
+import { post } from '../lib/api'
 
 const discovery = {
 	authorizationEndpoint: 'https://github.com/login/oauth/authorize',
@@ -29,11 +30,7 @@ export default function App() {
 	useEffect(() => {
 		if (authResponse?.type === 'success') {
 			const { code } = authResponse.params
-			fetch('http://192.168.0.18:3333/register', {
-				method: 'POST',
-				body: `{"code":"${code}"}`,
-			})
-				.then((response) => response.json())
+			post('/register', { code })
 				.then(async ({ token }) => {
 					await SecureStore.setItemAsync('token', token)
 					router.push('/memories')

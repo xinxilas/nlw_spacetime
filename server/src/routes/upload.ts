@@ -11,6 +11,9 @@ const pump = promisify(pipeline)
 export async function uploadRoutes(app: FastifyInstance) {
 
   app.post("/upload", async (request, reply) => {
+
+    await request.jwtVerify()
+
     const upload = await request.file({
       limits: {
         fileSize: 5_242_880 // 5mb
@@ -40,7 +43,7 @@ export async function uploadRoutes(app: FastifyInstance) {
     const fullUrl = request.protocol.concat('://').concat(request.hostname)
     const fileUrl = new URL(`/uploads/${fileName}`, fullUrl).toString()
 
-    return { ok: true}
+    return { fileUrl }
 
     // curl -v -F 'upload=@\"upload_test.jpg\"' localhost:3333/upload
   })

@@ -5,10 +5,11 @@ import { prisma } from "../lib/prisma";
 
 export async function authRoutes(app: FastifyInstance) {
   app.post("/register", async (request: FastifyRequest<{ Body: string }>) => {
+
     const bodySchema = z.object({
       code: z.string()
     })
-    const { code } = bodySchema.parse(JSON.parse(request.body))
+    const { code } = bodySchema.parse(request.body)
 
     const accessTokenResponse = await fetch(
       "https://github.com/login/oauth/access_token?" + new URLSearchParams({
@@ -43,7 +44,12 @@ export async function authRoutes(app: FastifyInstance) {
     let user = await prisma.user.findUnique({
       where: {
         gitHubId: userInfo.id,
-      }
+      },
+      select: {
+        id: true,
+        name: true,
+        avatarUrl: true,
+      },      
     })
 
     if (!user) {

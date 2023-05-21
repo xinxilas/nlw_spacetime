@@ -29,7 +29,6 @@ app.register(memoriesRoutes)
 app.register(authRoutes)
 app.register(uploadRoutes)
 
-
 app
   .listen({
     port: 3333,

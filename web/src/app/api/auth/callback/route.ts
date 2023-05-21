@@ -5,10 +5,13 @@ export async function GET(request: NextRequest) {
 	const code = searchParams.get('code')
 
 	const redirectTo = request.cookies.get('redirectTo')?.value
-
 	const registerResponse = await fetch(
-		process.env.BACKEND_BASE_URL + '/register',
-		{ method: 'POST', body: `{"code":"${code}"}` },
+		process.env.NEXT_PUBLIC_BACKEND_BASE_URL + '/register',
+		{
+			method: 'POST',
+			body: `{"code":"${code}"}`,
+			headers: { 'Content-Type': 'application/json' },
+		},
 	)
 
 	const { token } = await registerResponse.json()
